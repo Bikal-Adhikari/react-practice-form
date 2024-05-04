@@ -4,15 +4,15 @@ import { nanoid } from "nanoid";
 import Items from "./components/Items";
 import { ToastContainer, toast } from "react-toastify";
 
-const getLocalStorage = () => {
-  let list = localStorage.getItem("list");
-  if (list) {
-    list = JSON.parse(localStorage.getItem("list"));
-  } else {
-    list = [];
-  }
-  return list;
-};
+// const getLocalStorage = () => {
+//   let list = localStorage.getItem("list");
+//   if (list) {
+//     list = JSON.parse(localStorage.getItem("list"));
+//   } else {
+//     list = [];
+//   }
+//   return list;
+// };
 
 const setLocalStorage = (items) => {
   localStorage.setItem("list", JSON.stringify(items));
