@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Form from "./components/Form";
-import { nanoid } from 'nanoid';
+import { nanoid } from "nanoid";
 
 const App = () => {
   const [items, setItems] = useState([]);
@@ -16,9 +16,28 @@ const App = () => {
     setLocalStorage(newItems);
     toast.success("item added to the list");
   };
+  const removeItem = (itemId) => {
+    const newItems = items.filter((item) => item.id !== itemId);
+    setItems(newItems);
+    setLocalStorage(newItems);
+    toast.success("item deleted");
+  };
+
+  const editItem = (itemId) => {
+    const newItems = items.map((item) => {
+      if (item.id === itemId) {
+        const newItem = { ...item, completed: !item.completed };
+        return newItem;
+      }
+      return item;
+    });
+    setItems(newItems);
+    setLocalStorage(newItems);
+  };
   return (
     <section className="section-center">
-      <Form addItem={addItem}/>
+      <Form addItem={addItem} />
+      <Items items={items} removeItem={removeItem} editItem={editItem} />
     </section>
   );
 };
