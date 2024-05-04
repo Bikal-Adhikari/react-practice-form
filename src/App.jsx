@@ -1,11 +1,24 @@
 import { useState } from "react";
 import Form from "./components/Form";
+import { nanoid } from 'nanoid';
 
 const App = () => {
   const [items, setItems] = useState([]);
+
+  const addItem = (itemName) => {
+    const newItem = {
+      name: itemName,
+      completed: false,
+      id: nanoid(),
+    };
+    const newItems = [...items, newItem];
+    setItems(newItems);
+    setLocalStorage(newItems);
+    toast.success("item added to the list");
+  };
   return (
     <section className="section-center">
-      <Form />
+      <Form addItem={addItem}/>
     </section>
   );
 };
